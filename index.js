@@ -8,25 +8,32 @@ var YAML = require("yamljs");
 var request = require("request");
 
 const app = express();
+const constants = require("./config/constants")
+require('./routes')(app);
 
-const tempController = require("./controllers/temperatureController")(app)
-const humidityController = require("./controllers/humidityController")(app)
-const ledController = require("./controllers/ledController")(app)
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "/views/"));
 
 var args = process.argv.slice(2);
 const port = args[0];
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //For presentation
 app.get("/", (req, res) => {
     var temp;
     var humid;
     var time;
+
+    request.get(constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",function(err,res,body){
+        temp = JSON.parse(body).temperature;
+        time = JSON.parse(body).currentTime;
+      });
+
+    request.get(constants.host + ':' + constants.portNo + constants.apiPath + "humidity/value",function(err,res,body){
+        temp = JSON.parse(body).humidity;
+  });
 
   res.render('index', {temp: temp, humid: humid, time: time})
   
