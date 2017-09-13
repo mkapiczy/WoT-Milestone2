@@ -8,12 +8,13 @@ var YAML = require("yamljs");
 var request = require("request");
 
 const app = express();
-
-const tempController = require("./controllers/temperatureController")(app)
-const humidityController = require("./controllers/humidityController")(app)
-const ledController = require("./controllers/ledController")(app)
-
 const constants = require("./config/constants");
+//const tempController = require("./controllers/temperatureController")(app)
+//const humidityController = require("./controllers/humidityController")(app)
+//const ledController = require("./controllers/ledController")(app)
+
+var routes = require('./routes');
+app.use(constants.apiPath, routes);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,18 +30,6 @@ app.get("/", (req, res) => {
     var temp;
     var humid;
     var time;
-    var test = tempController.get();
-    console.log(test);
-    //Get req from the controllers here...
-    request(constants.host + ':' + constants.portNo + constants.apiPath + 'temperature/value', function (error, response, body) {
-        //temp = response.temp;
-        console.log(response);
-        console.log(body);
-    });
-    request(constants.host + constants.apiPath + 'humidity/value', function (error, response, body) {
-        humid = response.humid;
-        temp = response.time;
-    });
 
   res.render('index', {temp: temp, humid: humid, time: time})
   
