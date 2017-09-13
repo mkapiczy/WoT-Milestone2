@@ -14,8 +14,7 @@ const tempController = require("./controllers/temperatureController")(app)
 const humidityController = require("./controllers/humidityController")(app)
 const ledController = require("./controllers/ledController")(app)
 
-
-const apiPath = "/api/kademlia/";
+const constants = require("./config/constants");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
