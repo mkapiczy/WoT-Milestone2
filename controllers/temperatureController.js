@@ -1,17 +1,16 @@
 const constants = require(".././config/constants");
 const tempHumidSensor = require(".././utils/tempHumidSensor");
-module.exports = {
+module.exports = function(app, auth){
   
     // Edit an article
-    getTempValue : function(request, response){
+    app.get(constants.apiPath + '/temperature/value', function(request, response){
         var currentTime = new Date();
-        var temperature = tempHumidSensor.readTemp().ToFixed(2);
-        console.log(currentTime);
-        console.log(temperature);
+        var temperature = tempHumidSensor.readTemp();
+
         response.json({
             currentTime: currentTime, 
             temperature: temperature
           });
-    }
+    })
   
   }

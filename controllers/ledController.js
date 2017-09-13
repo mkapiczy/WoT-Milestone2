@@ -1,9 +1,10 @@
 const constants = require(".././config/constants");
-
-module.exports = {
+const ledSensor = require(".././utils/ledControl");
+module.exports = function(app, auth){
   
     // Edit an article
-    toggleLED : function(request, response){      
-    }
+    app.get(constants.apiPath + '/led/toggle', function(request, response){
+        
+    })
   
   }

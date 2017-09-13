@@ -8,10 +8,10 @@ var YAML = require("yamljs");
 var request = require("request");
 
 const app = express();
-const constants = require("./config/constants");
-//const tempController = require("./controllers/temperatureController")(app)
-//const humidityController = require("./controllers/humidityController")(app)
-//const ledController = require("./controllers/ledController")(app)
+
+const tempController = require("./controllers/temperatureController")(app)
+const humidityController = require("./controllers/humidityController")(app)
+const ledController = require("./controllers/ledController")(app)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,9 +36,6 @@ var swaggerDoc = YAML.load("openapi.yaml");
 swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
   app.use(middleware.swaggerUi());
 });
-
-var routes = require('./routes');
-app.use('/api', routes);
 
 app.listen(port, err => {
   if (err) {
