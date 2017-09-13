@@ -27,7 +27,9 @@ app.get("/", (req, res) => {
     var _time;
 
     request.get(constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",function(err,res,body){
+        console.log(JSON.parse(body).temperature)
         _temp = JSON.parse(body).temperature;
+
         _time = JSON.parse(body).currentTime;
       });
 
