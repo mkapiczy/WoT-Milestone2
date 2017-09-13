@@ -1,6 +1,6 @@
 var express = require('express');
 const constants = require('./config/constants');
-var tempCtrl = require('./controllers/temperaturController');
+var tempCtrl = require('./controllers/temperatureController');
 var humidCtrl = require('./controllers/humidityController');
 var ledCtrl = require('./controllers/ledController');
 
