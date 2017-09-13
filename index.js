@@ -16,6 +16,8 @@ const constants = require("./config/constants");
 var routes = require('./routes');
 app.use(constants.apiPath, routes);
 
+console.log(constants.apiPath + routes)
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "pug");
