@@ -6,6 +6,8 @@ const path = require("path");
 var swaggerTools = require("swagger-tools");
 var YAML = require("yamljs");
 var request = require("request");
+var rp = require('request-promise');
+
 
 const app = express();
 const constants = require("./config/constants")
@@ -26,20 +28,31 @@ app.get("/", (req, res) => {
     var _humid;
     var _time;
 
-    request.get(constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",function(err,res,body){
-        _temp = JSON.parse(body).temperature;
-        _time = JSON.parse(body).currentTime;
-      });
-
-    request.get(constants.host + ':' + constants.portNo + constants.apiPath + "humidity/value",function(err,res,body){
-        humid = JSON.parse(body).humidity;
-  });
-  console.log(_temp);
-  console.log(_humid);
-  console.log(_time);
-  
-  res.render('index', {temp: _temp, humid: _humid, time: _time})
-  
+    var optionsTemp = {
+      uri: constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",
+      json: true
+    };
+    
+    rp(optionsTemp)
+      .then(function (body) {
+        _temp = body.temperature
+        _time = body.currentTime
+        
+        var optionsHumid = {
+          uri: constants.host + ':' + constants.portNo + constants.apiPath + "humidity/value",
+          json: true
+       };
+        rp(optionsHumid)
+         .then(function (body) {
+           _humid = body.humidity
+           res.render('index', {temp: _temp, humid: _humid, time: _time})
+           
+         }).catch(function (err) {
+           // API call failed... 
+         });        
+    }).catch(function (err) {
+      // API call failed... 
+    });
 });
 
 var swaggerDoc = YAML.load("openapi.yaml");
