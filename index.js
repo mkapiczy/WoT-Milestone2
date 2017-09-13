@@ -5,11 +5,14 @@ const pug = require("pug");
 const path = require("path");
 var swaggerTools = require("swagger-tools");
 var YAML = require("yamljs");
+var request = require("request");
+
 
 const app = express();
 
-const ledControl = require("./utils/ledControl")
-const tempControl = require("./utils/tempControl")
+const tempController = require("./controllers/temperatureController")(app)
+const humidityController = require("./controllers/humidityController")(app)
+const ledController = require("./controllers/ledController")(app)
 
 
 const apiPath = "/api/kademlia/";
@@ -22,12 +25,26 @@ app.set("views", path.join(__dirname, "/views/"));
 var args = process.argv.slice(2);
 const port = args[0];
 
+
 //For presentation
 app.get("/", (request, response) => {
-  ledControl.blinkLED();
-  var temperature = tempControl.readTemp();
-  var humidity = tempControl.readHumid();
-  response.render('index', {title: 'Hey!', message: 'This works :-)', temp: temperature, humid: humidity})
+    var temp;
+    var humid;
+    var time;
+    //Get req from the controllers here...
+    request(constants.apiPath + 'sensors/temperature/value', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+        temp = response.temp;
+        }
+    });
+    request(constants.apiPath + 'sensors/humidity/value', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+        humid = response.humid;
+        temp = response.time;
+        }
+    });
+
+  response.render('index', {temp: temp, humid: humid, time: time})
   
 });
 

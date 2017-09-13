@@ -1,16 +1,11 @@
 var onoff = require('onoff');
 
-exports.blinkLED = function (){
+exports.toggleLED = function (){
   var Gpio = onoff.Gpio, 
-  led = new Gpio(4, 'out'),
-  interval;
-
-  interval = setInterval(function (){
-    var value = (led.readSync() + 1) % 2;
-      led.write(value, function() {
-      console.log("Changed LED state to: "+ value);
-    });
-  }, 2000);
+  led = new Gpio(4, 'out');
+  var value = led.readSync()
+  led.write(!value, function(){
+  });
 
   process.on('SIGINT', function () {
   clearInterval(interval);
