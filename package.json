@@ -19,6 +19,7 @@
     "yamljs": "latest",
     "pug": "latest",
     "path": "latest",
-    "onoff": "latest"
+    "onoff": "latest",
+    "node-dht-sensor": "latest"
   }
 }
