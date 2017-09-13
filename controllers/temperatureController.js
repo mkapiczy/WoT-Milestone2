@@ -8,7 +8,7 @@ module.exports = {
         var temperature = tempHumidSensor.readTemp().ToFixed(2);
         console.log(currentTime);
         console.log(temperature);
-        return ({
+        response.json({
             currentTime: currentTime, 
             temperature: temperature
           });
