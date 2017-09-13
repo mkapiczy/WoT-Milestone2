@@ -13,8 +13,7 @@ const constants = require("./config/constants");
 //const humidityController = require("./controllers/humidityController")(app)
 //const ledController = require("./controllers/ledController")(app)
 
-var routes = require('./routes');
-app.use(constants.apiPath, routes);
+
 
 console.log(constants.apiPath + routes)
 
@@ -41,6 +40,9 @@ var swaggerDoc = YAML.load("openapi.yaml");
 swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
   app.use(middleware.swaggerUi());
 });
+
+var routes = require('./routes');
+app.use('/api', routes);
 
 app.listen(port, err => {
   if (err) {
