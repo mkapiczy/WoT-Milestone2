@@ -6,6 +6,7 @@ const path = require("path");
 var swaggerTools = require("swagger-tools");
 var YAML = require("yamljs");
 var request = require("request");
+var async = require("async");
 
 const app = express();
 const constants = require("./config/constants")
@@ -26,17 +27,14 @@ app.get("/", (req, res) => {
     var _humid;
     var _time;
 
-    request.get(constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",function(err,res,body){
-        console.log(JSON.parse(body).temperature)
-        _temp = JSON.parse(body).temperature;
-
-        _time = JSON.parse(body).currentTime;
+    var test = await request.get(constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",function(err,res,body){
+        return body;
       });
 
-    request.get(constants.host + ':' + constants.portNo + constants.apiPath + "humidity/value",function(err,res,body){
-        humid = JSON.parse(body).humidity;
-  });
-  console.log(_temp);
+    //request.get(constants.host + ':' + constants.portNo + constants.apiPath + "humidity/value",function(err,res,body){
+        //return body;
+  //});
+  console.log(test);
   console.log(_humid);
   console.log(_time);
   
