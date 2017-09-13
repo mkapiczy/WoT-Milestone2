@@ -6,7 +6,7 @@ module.exports = function(app){
   //temperature controller
   app.get(constants.apiPath + 'temperature/value', tempCtrl.getValue);
   //humidity controller
-  app.get(constants.apiPath + 'humiidty/value', humidCtrl.getValue);
+  app.get(constants.apiPath + 'humidity/value', humidCtrl.getValue);
 
   //TODO: Add led control toggle
   
