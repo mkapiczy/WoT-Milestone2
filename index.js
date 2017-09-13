@@ -26,7 +26,7 @@ const port = args[0];
 
 
 //For presentation
-app.get("/", (request, response) => {
+app.get("/", (req, res) => {
     var temp;
     var humid;
     var time;
@@ -43,7 +43,7 @@ app.get("/", (request, response) => {
         }
     });
 
-  response.render('index', {temp: temp, humid: humid, time: time})
+  res.render('index', {temp: temp, humid: humid, time: time})
   
 });
 
