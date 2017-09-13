@@ -26,7 +26,8 @@ const port = args[0];
 app.get("/", (request, response) => {
   ledControl.blinkLED();
   var temperature = tempControl.readTemp();
-  response.render('index', {title: 'Hey!', message: 'This works :-)', temp: temperature})
+  var humidity = tempControl.readHumid();
+  response.render('index', {title: 'Hey!', message: 'This works :-)', temp: temperature, humid: humidity})
   
 });
 
