@@ -31,12 +31,12 @@ app.get("/", (req, res) => {
     var humid;
     var time;
     //Get req from the controllers here...
-    request(constants.apiPath + 'sensors/temperature/value', function (error, response, body) {
+    request(constants.host + constants.apiPath + 'sensors/temperature/value', function (error, response, body) {
         //temp = response.temp;
         console.log(response);
         console.log(body);
     });
-    request(constants.apiPath + 'sensors/humidity/value', function (error, response, body) {
+    request(constants.host + constants.apiPath + 'sensors/humidity/value', function (error, response, body) {
         humid = response.humid;
         temp = response.time;
     });
