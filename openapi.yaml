@@ -1,0 +1,112 @@
+# [START swagger]
+swagger: "2.0"
+info:
+  description: "Documentation for the Kademlia RESTful API"
+  title: "KademliaGolf"
+  version: "1.0.0"
+# [END swagger]
+basePath: "/api/kademlia"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+schemes:
+- "http"
+paths:
+  "/nodes/{:id}":
+    get:
+      description: "Find the k closest neighbours to node with id"
+      operationId: "nodeId"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/node"
+      parameters:
+        - in: path
+          name: :id
+          required: true
+          type: number
+        - in: body
+          name: Body
+          required: true
+          schema:
+            $ref: "#/definitions/bodyNode"
+  "/info/ping":
+    get:
+      description: "Ping the node from the URL"
+      operationId: "N/A"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/pingResponse"
+      parameters:
+      - description: "Ping the given IP"
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: "#/definitions/ping"
+definitions:
+  node:
+    properties:
+      nodeId:
+        type: "string"
+        description: "Id of the receiving node"
+      rpcId:
+        type: "string"
+        description: "Id of the request used for validation"
+      closestNodes:
+        type: "object"
+        description: "An array of the closest sorted by distance."
+        properties:
+          id:
+            type: "string"
+            description: "Id for the given node"
+          ipAddr:
+            type: "string"
+            description: "IP Address for the given node."
+          port:
+            type: "string"
+            description: "Port for the given node."
+  pingResponse:
+    properties:
+      nodeId:
+        type: "string"
+        description: "Id for the ping'ed node"
+      rpcId:
+        type: "string"
+        description: "Request Id used for validation"
+      msg:
+        type: "string"
+        description: "Return PONG, if Ping successful"
+  ping:
+    properties:
+      nodeId:
+        type: "string"
+        description: "Id for the pinging node"
+      nodeIP:
+        type: "string"
+        description: "IP Address for the pinging node"
+      nodePort:
+        type: "string"
+        description: "Port for the pinging node"
+      rpcId:
+        type: "string"
+        description: "Request Id used for validation"
+  bodyNode:
+    properties:
+      nodeIP:
+        type: "string"
+        description: "IP Address for the requesting node"
+      nodePort:
+        type: "string"
+        description: "Port for the requesting node"
+      rpcId:
+        type: "string"
+        description: "Request Id used for validation"

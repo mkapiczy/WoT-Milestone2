@@ -1,0 +1,24 @@
+{
+  "name": "KademliaWoT",
+  "version": "1.0.0",
+  "description": "A webAPI to provide data from a sensor connected to raspberry pi",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "big-integer": "^1.6.25",
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "enum": "^2.4.0",
+    "express": "^4.15.4",
+    "http-status-codes": "^1.2.0",
+    "request": "^2.81.0",
+    "sha1": "^1.1.1",
+    "swagger-tools": "latest",
+    "swagger-ui": "latest",
+    "yamljs": "latest",
+    "pug": "latest",
+    "path": "latest",
+    "onoff": "latest"
+  }
+}
