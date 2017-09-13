@@ -13,10 +13,6 @@ const constants = require("./config/constants");
 //const humidityController = require("./controllers/humidityController")(app)
 //const ledController = require("./controllers/ledController")(app)
 
-
-
-console.log(constants.apiPath + routes)
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "pug");

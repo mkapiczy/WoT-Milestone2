@@ -5,6 +5,6 @@ var ledCtrl = require('./controllers/ledController');
 
 var router = express.Router();
 
-router.route('temperature/value').get(tempCtrl.getTempValue);
+router.route('temperature').get(tempCtrl.getTempValue);
 
 module.exports = router;
