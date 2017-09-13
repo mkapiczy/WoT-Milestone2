@@ -32,15 +32,11 @@ app.get("/", (req, res) => {
     var time;
     //Get req from the controllers here...
     request(constants.apiPath + 'sensors/temperature/value', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
         temp = response.temp;
-        }
     });
     request(constants.apiPath + 'sensors/humidity/value', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
         humid = response.humid;
         temp = response.time;
-        }
     });
 
   res.render('index', {temp: temp, humid: humid, time: time})
