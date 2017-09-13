@@ -22,20 +22,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //For presentation
 app.get("/", (req, res) => {
-    var temp;
-    var humid;
-    var time;
+    var _temp;
+    var _humid;
+    var _time;
 
     request.get(constants.host + ':' + constants.portNo + constants.apiPath + "temperature/value",function(err,res,body){
-        temp = JSON.parse(body).temperature;
-        time = JSON.parse(body).currentTime;
+        _temp = JSON.parse(body).temperature;
+        _time = JSON.parse(body).currentTime;
       });
 
     request.get(constants.host + ':' + constants.portNo + constants.apiPath + "humidity/value",function(err,res,body){
-        temp = JSON.parse(body).humidity;
+        humid = JSON.parse(body).humidity;
   });
-
-  res.render('index', {temp: temp, humid: humid, time: time})
+  console.log(_temp);
+  console.log(_humid);
+  console.log(_time);
+  
+  res.render('index', {temp: _temp, humid: _humid, time: _time})
   
 });
 
