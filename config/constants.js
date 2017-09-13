@@ -3,8 +3,10 @@
 */
 const apiPath = "/api/sensors/";
 const host = "http://localhost";
+const portNo = "2727";
 
 module.exports = {
     'apiPath': apiPath,
-    'host': host
+    'host': host,
+    'portNo': portNo
 }

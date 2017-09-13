@@ -1,10 +1,9 @@
 const constants = require(".././config/constants");
 
-module.exports = function(app, auth){
+module.exports = {
   
     // Edit an article
-    app.post(constants.apiPath + '/led/toggle', function(request, response){
-      
-    })
+    toggleLED : function(request, response){      
+    }
   
   }

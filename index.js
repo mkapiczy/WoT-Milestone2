@@ -7,7 +7,6 @@ var swaggerTools = require("swagger-tools");
 var YAML = require("yamljs");
 var request = require("request");
 
-
 const app = express();
 
 const tempController = require("./controllers/temperatureController")(app)
@@ -30,8 +29,10 @@ app.get("/", (req, res) => {
     var temp;
     var humid;
     var time;
+    var test = tempController.get();
+    console.log(test);
     //Get req from the controllers here...
-    request(constants.host + constants.apiPath + 'temperature/value', function (error, response, body) {
+    request(constants.host + ':' + constants.portNo + constants.apiPath + 'temperature/value', function (error, response, body) {
         //temp = response.temp;
         console.log(response);
         console.log(body);
