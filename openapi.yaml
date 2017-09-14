@@ -1,11 +1,11 @@
 # [START swagger]
 swagger: "2.0"
 info:
-  description: "Documentation for the Kademlia RESTful API"
+  description: "Documentation for the Kademlia WoT RESTful API"
   title: "KademliaGolf"
   version: "1.0.0"
 # [END swagger]
-basePath: "/api/kademlia"
+basePath: "/api/sensors"
 consumes:
 - "application/json"
 produces:
@@ -13,100 +13,61 @@ produces:
 schemes:
 - "http"
 paths:
-  "/nodes/{:id}":
+  "/temperature/value":
     get:
-      description: "Find the k closest neighbours to node with id"
-      operationId: "nodeId"
+      description: "Get the current temperature measured by the sensor"
       produces:
       - "application/json"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/node"
-      parameters:
-        - in: path
-          name: :id
-          required: true
-          type: number
-        - in: body
-          name: Body
-          required: true
-          schema:
-            $ref: "#/definitions/bodyNode"
-  "/info/ping":
+            $ref: "#/definitions/temperature"
+  "/humidity/value":
     get:
-      description: "Ping the node from the URL"
-      operationId: "N/A"
+      description: "Get the current humidity measured by the sensor"
       produces:
       - "application/json"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/pingResponse"
-      parameters:
-      - description: "Ping the given IP"
-        in: body
-        name: message
-        required: true
-        schema:
-          $ref: "#/definitions/ping"
+            $ref: "#/definitions/humidity"
+  "/led/toogle":
+    post:
+      description: "Toggle the LED connected to the pi"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/led"
 definitions:
-  node:
+  temperature:
     properties:
-      nodeId:
+      currentTime:
         type: "string"
-        description: "Id of the receiving node"
-      rpcId:
-        type: "string"
-        description: "Id of the request used for validation"
-      closestNodes:
-        type: "object"
-        description: "An array of the closest sorted by distance."
-        properties:
-          id:
-            type: "string"
-            description: "Id for the given node"
-          ipAddr:
-            type: "string"
-            description: "IP Address for the given node."
-          port:
-            type: "string"
-            description: "Port for the given node."
-  pingResponse:
+        description: "Date and time of the measurement"
+      temperature:
+        type: "number"
+        description: "Value of the temperature, given in celsius"
+  humidity:
     properties:
-      nodeId:
+      currentTime:
         type: "string"
-        description: "Id for the ping'ed node"
-      rpcId:
-        type: "string"
-        description: "Request Id used for validation"
-      msg:
-        type: "string"
-        description: "Return PONG, if Ping successful"
-  ping:
+        description: "Date and time of the measurement"
+      humidity:
+        type: "number"
+        description: "Value of the humidity, given in percentage"
+  led:
     properties:
-      nodeId:
+      currentState:
+        type: "boolean"
+        description: "The state the LED changed to. True is ON, and false is OFF"
+      currentTime:
         type: "string"
-        description: "Id for the pinging node"
-      nodeIP:
+        description: "Date and time of the request"
+      message:
         type: "string"
-        description: "IP Address for the pinging node"
-      nodePort:
-        type: "string"
-        description: "Port for the pinging node"
-      rpcId:
-        type: "string"
-        description: "Request Id used for validation"
-  bodyNode:
-    properties:
-      nodeIP:
-        type: "string"
-        description: "IP Address for the requesting node"
-      nodePort:
-        type: "string"
-        description: "Port for the requesting node"
-      rpcId:
-        type: "string"
-        description: "Request Id used for validation"
+        description: "Toggled!"
