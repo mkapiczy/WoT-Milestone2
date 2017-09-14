@@ -21,6 +21,7 @@ const port = args[0];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//For making the folder public to pug script.
 app.use('/views', express.static(path.join(__dirname, '/views')));
 
 //For presentation

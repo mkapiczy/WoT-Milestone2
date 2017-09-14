@@ -1,4 +1,3 @@
 var toggleLED = function() {
-    //Call post from here.
-    console.log('called correctly from button')
+    $.post("http://localhost:2727/api/sensors/led/toggle");
 }

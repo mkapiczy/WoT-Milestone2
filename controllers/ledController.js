@@ -1,12 +1,15 @@
 const constants = require(".././config/constants");
-const ledControl = require(".././utils/ledControl");
-module.exports = function(app, auth){
-  
-  app.post(constants.apiPath + '/led/toggle', function(request, response){
-    ledControl.toggleLED();
+const lightLED = require(".././utils/lightLED");
 
-    res.json({
-      message: "toggled!"
+exports.toggle = function(req, res) {
+  var currentTime = new Date();
+  var message = "toggled";
+
+  lightLED.toggleLED();
+  
+  res.statusCode = 200;
+  res.json({
+      currentTime: currentTime, 
+      message: message
     });
-})
-  }
+};
