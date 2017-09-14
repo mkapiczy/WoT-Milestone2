@@ -5,7 +5,7 @@ The system consists of an express server that gets the temperature, and are able
 
 #### Raspberry PI setup
 
-![Setup](https://github.com/mkapiczy/WoT-Milestone2/img/setup.png)
+![Setup](https://github.com/mkapiczy/WoT-Milestone2/tree/master/img/setup.png)
 
 #### Usage
 
