@@ -21,6 +21,7 @@ const port = args[0];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/views', express.static(path.join(__dirname, '/views')));
 
 //For presentation
 app.get("/", (req, res) => {

@@ -1,7 +1,7 @@
 var onoff = require('onoff');
 
 exports.toggleLED = function (){
-  var Gpio = onoff.Gpio, 
+  /*var Gpio = onoff.Gpio, 
   led = new Gpio(4, 'out');
   var value = led.readSync()
   led.write(!value, function(){
@@ -13,6 +13,8 @@ exports.toggleLED = function (){
   led.unexport();
   console.log('Bye, bye!');
   process.exit();
-  });
+  });*/
+
+  console.log("LED toggled")
 }
 
