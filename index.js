@@ -11,13 +11,21 @@ var rp = require('request-promise');
 
 const app = express();
 const constants = require("./config/constants")
-require('./routes')(app);
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "/views/"));
 
 var args = process.argv.slice(2);
 const port = args[0];
+const mocks = args[1];
+
+if(mocks == "mocks"){
+  require('./mockRoutes')(app);  
+}
+else{
+  require('./routes')(app);  
+}
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
