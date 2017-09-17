@@ -1,4 +1,4 @@
-const constants = require(".././config/constants");
+const constants = require("../config/constants");
 const tempHumidSensor = require(".././utils/tempHumidSensor");
 
 exports.getValue = function(req, res) {

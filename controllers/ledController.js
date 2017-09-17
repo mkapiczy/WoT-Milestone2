@@ -1,4 +1,4 @@
-const constants = require(".././config/constants");
+const constants = require("../config/constants");
 const lightLED = require(".././utils/lightLED");
 
 exports.toggle = function(req, res) {
