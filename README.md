@@ -28,7 +28,7 @@ $ sudo make install
 For testing without the sensor and just running on your local machine use:
 ```
 $ npm install
-$ node mocks.js 2727
+$ node index.js 2727 mocks
 ```
 Which will use the fake controllers and sensors.
 

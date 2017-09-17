@@ -11,12 +11,21 @@ var YAML = require("yamljs");
 const app = express();
 const constants = require("./config/constants");
 var routes = require("./config/routes");
-app.use("", routes);
+
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "/views/"));
 
 var args = process.argv.slice(2);
 const port = args[0];
+const mocks = args[1];
+
+if(mocks == "mocks"){
+  app.use("", require("./config/mockRoutes")); 
+}
+else{
+  app.use("", require("./config/routes"));
+}
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
