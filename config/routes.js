@@ -11,6 +11,6 @@ var ledCtrl = require("../controllers/ledController");
 router.get("/", indexController.index);
 router.get(constants.apiPath + "temperature/value", tempCtrl.getValue);
 router.get(constants.apiPath + "humidity/value", humidCtrl.getValue);
-router.post(constants.apiPath + "led/toggle", ledCtrl.toggle);
+router.put(constants.apiPath + "led/toggle", ledCtrl.toggle);
 
 module.exports = router;

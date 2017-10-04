@@ -1,3 +1,3 @@
 var toggleLED = function() {
-    $.post("/api/sensors/led/toggle");
+    $.put("/api/sensors/led/toggle");
 }

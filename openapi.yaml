@@ -34,7 +34,7 @@ paths:
           schema:
             $ref: "#/definitions/humidity"
   "/led/toogle":
-    post:
+    put:
       description: "Toggle the LED connected to the pi"
       produces:
       - "application/json"
