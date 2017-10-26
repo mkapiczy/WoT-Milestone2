@@ -1,7 +1,7 @@
 # WoT-Milestone2
-An implementation of an Express API that gets a temperature measured on a raspberry pi.
+An implementation of a Web of Things API that communicates with a raspberry pi in order to read sensor measurements (temperature and humidity) and manipulate an actuator (LED).
 
-The system consists of an express server that gets the temperature, and are able to toggle an LED.
+The system consists of an express server that gets the temperature and humidity measurement, and is able to toggle an LED.
 
 #### Raspberry PI setup
 
